@@ -1,4 +1,4 @@
-# Pingy - A Firebase based web chat application
+# PingMe - A Firebase based web chat application
 # Visit the Firebase database for this application : https://console.firebase.google.com/project/pingyapp5/firestore/data/~2Fmessages
 # `npm install firebase `
 Installs the Firebase into the project.
