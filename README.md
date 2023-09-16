@@ -1,5 +1,10 @@
 # Getting Started with Create React App
 # Visit the Firebase database for this application : https://console.firebase.google.com/project/pingyapp5/firestore/data/~2Fmessages
+### `npm install firebase `
+Installs the Firebase into the project.
+
+### `npm install universal-cookie`
+Install the universal Cookies for React.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
