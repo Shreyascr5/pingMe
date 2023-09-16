@@ -27,6 +27,7 @@ function Auth(props) {
     <div className='auth'>
         <p>Sign In with Google to continue!</p>
         <button onClick={signInWithGoogle}>Sign In with Google</button>
+        <p>Please, Refresh your tab if the Chat page doesn't loads automatically!</p>
     </div>
   )
 }
