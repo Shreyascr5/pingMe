@@ -6,3 +6,4 @@ steps to use:
 2.Reload your webpage if your chat application doesn't Load.
 3.Enter the Room name as same as your friend's Room name! (Entering a different room name might create a new Chat webpage).
 4.Write messages to your friend on the other side and also recieve messages from them.
+5. Sign out lets you log out of the room.
