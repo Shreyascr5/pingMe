@@ -18,21 +18,22 @@ function Chat({ room }) {
 
   useEffect(() => {
     //firebase query
-    const queryMessages = query(messagesRef, where("room", "==", room),
-    orderBy("createdAt"));
-    const unsubscribe=onSnapshot(queryMessages, (snapshot) => {
+    const queryMessages = query(
+      messagesRef,
+      where("room", "==", room),
+      orderBy("createdAt")
+    );
+    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messages);
     });
-    
 
     //cleanup
-    return ()=>unsubscribe();
-
-  }, [messagesRef,room]);
+    return () => unsubscribe();
+  }, [messagesRef, room]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,15 +47,16 @@ function Chat({ room }) {
     setNewMessage(" ");
   };
 
-
   return (
     <div className="chat-app">
-    <div className="header"><h1>Welcome to: {room.toUpperCase()}</h1></div>
+      <div className="header">
+        <h1>Welcome to: {room.toUpperCase()}</h1>
+      </div>
       <div className="messages">
         {messages.map((message) => (
           <div className="message" key={message.id}>
-          <span className="user">{message.user}</span>
-          {message.text}
+            <span className="user">{message.user}</span>
+            {message.text}
           </div>
         ))}
       </div>
