@@ -1,0 +1,8 @@
+Hi , this is a Firebase based chat application which is made using ReactJS, 
+Firebase database link : https://console.firebase.google.com/project/pingyapp5/firestore/data/~2Fmessages
+
+steps to use: 
+1. Login using your Google Account.
+2.Reload your webpage if your chat application doesn't Load.
+3.Enter the Room name as same as your friend's Room name! (Entering a different room name might create a new Chat webpage).
+4.Write messages to your friend on the other side and also recieve messages from them.
