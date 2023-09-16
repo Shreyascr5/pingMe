@@ -62,3 +62,19 @@ body {
   .sign-out {
     margin-top: 50px;
   }
+  .sign-out button{
+    width : auto ;
+    padding: 10px;
+    background:rgb(242, 31, 31);
+    color:black;
+    font-weight: bold;
+    align-items: center;
+    border-radius: 5px;
+    margin-left: 55px;
+    
+  }
+  .sign-out p{
+    margin-top: 40px;
+    margin-left: 55px;
+  }
+ 

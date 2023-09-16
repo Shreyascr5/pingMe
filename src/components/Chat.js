@@ -1,33 +1,63 @@
 import React, { useEffect, useState } from "react";
-import {addDoc,collection,serverTimestamp,onSnapshot,query,where} from "firebase/firestore"
-import { db,auth } from "../firebase-config";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+} from "firebase/firestore";
+import { db, auth } from "../firebase-config";
 import "../styles/Chat.css";
 
-function Chat({room}) {
+function Chat({ room }) {
   const [newMessage, setNewMessage] = useState("");
-  const messagesRef=collection(db,"messages");
+  const messagesRef = collection(db, "messages");
+  const [messages, setMessages] = useState([]);
 
+  useEffect(() => {
+    //firebase query
+    const queryMessages = query(messagesRef, where("room", "==", room),
+    orderBy("createdAt"));
+    const unsubscribe=onSnapshot(queryMessages, (snapshot) => {
+      let messages = [];
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      setMessages(messages);
+    });
+    
 
-  useEffect(()=>{
-   const queryMessages=query(messagesRef,where("room","==",room));
-    onSnapshot(queryMessages,(snapshot)=>{
-        console.log("New messages");
-    })
-  })
+    //cleanup
+    return ()=>unsubscribe();
 
-  const handleSubmit = async(e) => {
+  }, [messagesRef,room]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(newMessage===" ") return;
-    await addDoc(messagesRef,{
-        text:newMessage,
-        createdAt:serverTimestamp(),
-        user:auth.currentUser.displayName,
-        room:room,
+    if (newMessage === " ") return;
+    await addDoc(messagesRef, {
+      text: newMessage,
+      createdAt: serverTimestamp(),
+      user: auth.currentUser.displayName,
+      room: room,
     });
     setNewMessage(" ");
   };
+
+
   return (
     <div className="chat-app">
+    <div className="header"><h1>Welcome to: {room.toUpperCase()}</h1></div>
+      <div className="messages">
+        {messages.map((message) => (
+          <div className="message" key={message.id}>
+          <span className="user">{message.user}</span>
+          {message.text}
+          </div>
+        ))}
+      </div>
       <form onSubmit={handleSubmit} className="new-message-form">
         <input
           type="text"
