@@ -19,7 +19,7 @@ function Auth(props) {
         }
         catch(err){
             console.log(err);
-            setIsAuth(false);
+            // setIsAuth(false);
         }
 
     };
